@@ -1,0 +1,1 @@
+dotnet ef migrations add $1 --project ./Mx.Insurance.Database/Mx.Insurance.Database.csproj --startup-project ./Mx.Insurance/Mx.Insurance.csproj
