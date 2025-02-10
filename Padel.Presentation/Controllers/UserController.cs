@@ -22,4 +22,11 @@ public class UserController : ControllerBase
 
         return Ok(result);
     }
+    
+    //https://localhost:5001/user/1
+    [HttpGet("{userId}")]
+    public ActionResult GetUser(int userId)
+    {
+        return Ok(userId);
+    }
 }
