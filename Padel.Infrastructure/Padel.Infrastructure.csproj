@@ -10,12 +10,6 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.12" />
 		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
 	</ItemGroup>
-	
-	<ItemGroup>
-		<None Update="Migrations\20250218205448_NuevoSql.sql">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Padel.Domain\Padel.Domain.csproj" />
