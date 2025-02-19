@@ -42,9 +42,76 @@ public class UserService : IUserService
             Id = user.Id,
             Email = user.Email,
             FirstName = user.FirstName,
-            LastName = user.LastName,
+            LastName = user.LastName
         };
         
         return response;
     }
+
+    public GetUserResponse GetUserById(int userId)
+    {
+        //Este es para consukltar el repositorio por id
+        var user = _userRepository.GetById(userId);
+        
+        //Aqui en caso de que no existe que me retorne un null
+        if (user == null || user.IsActive == false)
+        {
+            return null;
+        }
+        
+        //Aqui coinstruyo el cuerpo del JSOn del metodo get como respuesta
+        var response = new GetUserResponse()
+        {
+            Id = user.Id,
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            FechaCreacion = user.CreatedAt
+
+        };
+        return response;
+
+
+    }
+
+    public bool DeleteUser(int userId)
+    {
+        //Primero consultamos a la BD por id
+        var user = _userRepository.GetById(userId);
+        
+        //Aqui verifico si el usuario ya esta inactivo
+        if (user == null || user.IsActive == false)
+        {
+            return false;
+        }
+        
+        user.IsActive = false;
+        _userRepository.Update(user);
+        
+        return true;
+        
+        
+    }
+
+    public bool UpdateUser(int userId, UpdateUserDto dto)
+    {
+        var user = _userRepository.GetById(userId);
+
+        if (user == null || user.IsActive == false)
+        {
+            return false;
+        }
+        
+        //AQUI ACTUALIZAMOS LOS CAMPOS
+        user.Email = dto.Email;
+        user.FirstName = dto.FirstName;
+        user.LastName = dto.LastName;
+        
+        //DESPUES GUARDO LOS CAMBIOS EN EL REPOSITORIO
+        _userRepository.Update(user);
+        
+        return true;
+        
+    }
+    
 }

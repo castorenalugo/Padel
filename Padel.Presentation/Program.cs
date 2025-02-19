@@ -17,6 +17,10 @@ public class Program
         builder.Services.AddScoped<IUserService, UserService>();
         
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        
+        //Estos comandos es para agregar el swagger
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
         var connectionString = builder.Configuration.GetConnectionString("PadelDb");
        
@@ -28,7 +32,15 @@ public class Program
 
         app.UseRouting();
         app.MapControllers();
-
+        
+        
+        
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+        
         app.Run();
     }
 

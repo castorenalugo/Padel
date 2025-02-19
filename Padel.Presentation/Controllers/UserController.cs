@@ -22,11 +22,49 @@ public class UserController : ControllerBase
 
         return Ok(result);
     }
-    
+
     //https://localhost:5001/user/1
     [HttpGet("{userId}")]
-    public ActionResult GetUser(int userId)
+    public ActionResult GetUserById(int userId)
     {
-        return Ok(userId);
+        var resultado = _userService.GetUserById(userId);
+
+        if (resultado == null)
+        {
+            return NotFound("EL USUSARIO NO EXISTE");
+        }
+
+        return Ok(resultado);
+
     }
+
+    [HttpDelete("{userId}")]
+    public ActionResult DeleteUser(int userId)
+    {
+        var resultado = _userService.DeleteUser(userId);
+
+        if (!resultado)
+        {
+            return NotFound("EL USUSARIO YA FUE ELIMINADO");
+        }
+
+        return Ok("USUARIO ELIMINADO");
+        
+    }
+
+    [HttpPut("{userId}")]
+    public ActionResult UpdateUser(int userId, [FromBody] UpdateUserDto dto)
+    {
+        var resultado = _userService.UpdateUser(userId, dto);
+
+        if (!resultado)
+        {
+            return NotFound("USUARIO NO ENCONTRADO");
+        }
+        
+        return Ok(resultado);
+    }
+    
+
+
 }

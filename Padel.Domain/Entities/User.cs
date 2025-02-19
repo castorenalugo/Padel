@@ -6,20 +6,17 @@ namespace Padel.Domain.Entities;
 [Table("User")]
 public class User
 {
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
 
-    [MaxLength(50)]
-    public required string Email { get; set; }
+    [MaxLength(50)] public required string Email { get; set; }
 
-    [MaxLength(55)]
-    public required string FirstName { get; set; }
+    [MaxLength(55)] public required string FirstName { get; set; }
 
-    [MaxLength(50)]
-    public required string LastName { get; set; }
+    [MaxLength(50)] public required string LastName { get; set; }
 
-    [MaxLength(50)]
-    public required string Password { get; set; }
+    [MaxLength(50)] public required string Password { get; set; }
 
     public bool IsActive { get; set; }
+
+    public DateTime CreatedAt{ get; set; } = DateTime.Now;
 }
