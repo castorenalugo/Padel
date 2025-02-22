@@ -1,7 +1,6 @@
 ﻿using Padel.Domain.Entities;
 using Padel.Domain.Interfaces;
 using Padel.Infrastructure.Database;
-
 namespace Padel.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
@@ -13,9 +12,9 @@ public class UserRepository : IUserRepository
         _context = context;
     }
     
-    public User? GetById(int id)
+    public User? GetById(int userId)
     {
-        var user = _context.Users.FirstOrDefault(u => u.Id == id);
+        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
         return user;
     }
 
@@ -30,5 +29,11 @@ public class UserRepository : IUserRepository
         _context.Users.Add(user);
         _context.SaveChanges();
         return user;
+    }
+    //METODO DELETE y PUT
+    public void Update(User user)
+    {
+        _context.Users.Update(user);
+        _context.SaveChanges();
     }
 }

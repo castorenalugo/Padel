@@ -22,4 +22,6 @@ public class User
     public required string Password { get; set; }
 
     public bool IsActive { get; set; }
+    
+    public DateTime FechaCreacion { get; set; } = DateTime.Now;
 }

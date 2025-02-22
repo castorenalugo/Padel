@@ -13,23 +13,25 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddControllers();
-
         builder.Services.AddScoped<IUserService, UserService>();
-        
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        //Comandos para ejecutar el swagger
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
         var connectionString = builder.Configuration.GetConnectionString("PadelDb");
-       
         builder.Services.AddDbContext<PadelContext>(options =>
             options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
         );
         
         var app = builder.Build();
-
         app.UseRouting();
         app.MapControllers();
-
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
         app.Run();
     }
-
 }

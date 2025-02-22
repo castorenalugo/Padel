@@ -25,8 +25,37 @@ public class UserController : ControllerBase
     
     //https://localhost:5001/user/1
     [HttpGet("{userId}")]
-    public ActionResult GetUser(int userId)
+    public ActionResult GetUserById(int userId)
     {
+        var result = _userService.GetUserById(userId);
+        if (result == null)
+        {
+            return NotFound("USUARIO NO EXISTE");
+        }
         return Ok(userId);
+    }
+    
+    [HttpDelete("{userId}")]
+    public ActionResult DeleteUser(int userId)
+    {
+        var result = _userService.DeleteUser(userId);
+        if (!result)
+        {
+            return NotFound("USUARIO NO EXISTE O INACTIVO");
+        }
+        return Ok("USUARIO ELIMINADO");
+    }
+    
+    [HttpPut("{userId}")]
+    public ActionResult UpdateUser(int userId, [FromBody] UpdateUserDto dto)
+    {
+        var isUpdated = _userService.UpdateUser(userId, dto);
+
+        if (!isUpdated)
+        {
+            return NotFound("USUARIO NO EXISTE O INACTIVO");
+        }
+
+        return Ok("USUARIO ACTUALIZADO");
     }
 }
