@@ -11,6 +11,6 @@ public class Producto
     public required string Nombre { get; set; }
     [Column(TypeName = "decimal(18,2)")]
     public required decimal Precio { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
     public DateTime FechaCreacion { get; set; } = DateTime.Now;
 }

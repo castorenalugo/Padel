@@ -24,9 +24,7 @@ public class ProductoService: IProductoService
         var newProducto = new Producto()
         {
             Nombre = dto.Nombre,
-            Precio = dto.Precio,
-            IsActive = true,
-            FechaCreacion = DateTime.Now
+            Precio = dto.Precio
         };
         
         var producto = _productoRepository.Create(newProducto);
