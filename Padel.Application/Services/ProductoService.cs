@@ -35,7 +35,8 @@ public class ProductoService: IProductoService
         {
             Id = producto.Id,
             Nombre = producto.Nombre,
-            Precio = producto.Precio
+            Precio = producto.Precio,
+            FechaCreacion = producto.FechaCreacion
         };
         return response;
     }
@@ -45,7 +46,7 @@ public class ProductoService: IProductoService
         var producto = _productoRepository.GetById(productoId);
         if (producto == null)
         {
-            return null;
+            throw new Exception("PRODUCTO NO EXISTE");
         }
         var response = new GetProductoResponse()
         {
@@ -57,18 +58,9 @@ public class ProductoService: IProductoService
         return response;
     }
 
-    public List<GetProductoResponse> GetProductosActives()
+    public Producto[] GetProductosActives()
     {
-        //AQUI SE CONSULTA TODOS LOS USUARIOS EN EL REPOSITORIO
-        var productos = _productoRepository.GetAll().Where(u => u.IsActive).ToList();
-        //DONDE DESPUES AQUI SE MAPEA LA LISTA DE LOS USUARIOS ACTIVOS
-        var response = productos.Select(producto => new GetProductoResponse()
-        {
-            Id = producto.Id,
-            Nombre = producto.Nombre,
-            Precio = producto.Precio,
-            FechaCreacion = producto.FechaCreacion
-        }).ToList();
-        return response;
+        var productos = _productoRepository.GetAll().Where(u => u.IsActive).ToArray();
+        return productos;
     }
 }

@@ -25,21 +25,13 @@ public class ProductoController : ControllerBase
     public ActionResult GetProductoById(int productoId)
     {
         var result = _productoService.GetProductoById(productoId);
-        if (result == null)
-        {
-            return NotFound("PRODUCTO NO EXISTE");
-        }
         return Ok(result);
     }
 
-    [HttpGet]
-    public ActionResult<List<GetProductoResponse>> GetProductosActives()
+    [HttpGet ("Productos")]
+    public IActionResult GetProductosActives()
     {
         var productos = _productoService.GetProductosActives();
-        if (productos.Count == 0)
-        {
-            return NotFound("NO HAY PRODUCTOS ACTIVOS");
-        }
         return Ok(productos);
     }
 }

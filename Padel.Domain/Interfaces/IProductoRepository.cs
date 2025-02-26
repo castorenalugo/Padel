@@ -5,5 +5,5 @@ public interface IProductoRepository
 {
     Producto Create(Producto producto);
     Producto? GetById(int id);
-    List<Producto> GetAll();
+    Producto[] GetAll();
 }

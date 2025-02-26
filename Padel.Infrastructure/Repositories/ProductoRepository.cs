@@ -21,12 +21,11 @@ public class ProductoRepository : IProductoRepository
 
     public Producto? GetById(int productoId)
     {
-        var producto = _context.Productos.FirstOrDefault(p => p.Id == productoId);
-        return producto;
+        return _context.Productos.FirstOrDefault(p => p.Id == productoId);
     }
 
-    public List<Producto> GetAll()
+    public Producto[] GetAll()
     {
-        return _context.Productos.ToList();
+        return _context.Productos.ToArray();
     }
 }
