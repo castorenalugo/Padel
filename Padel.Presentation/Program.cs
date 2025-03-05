@@ -15,8 +15,8 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<IProductoService, ProductoService>();
-        builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+        builder.Services.AddScoped<IProductService, ProductService>();
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
         //Comandos para ejecutar el swagger
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

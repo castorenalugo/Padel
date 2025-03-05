@@ -12,5 +12,5 @@ public class PadelContext : DbContext
     public PadelContext(DbContextOptions options) : base(options) { }
     
     public DbSet<User> Users { get; set; }
-    public DbSet<Producto> Productos { get; set; }
+    public DbSet<Product> Products { get; set; }
 }

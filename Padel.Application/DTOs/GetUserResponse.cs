@@ -1,6 +1,6 @@
 ﻿namespace Padel.Application.DTOs;
 
-public class GetUserResponse
+public record GetUserResponse
 {
     public int Id { get; set; }
     public string Email { get; set; }

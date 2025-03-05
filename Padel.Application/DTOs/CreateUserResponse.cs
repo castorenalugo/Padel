@@ -2,7 +2,7 @@
 
 namespace Padel.Application.DTOs;
 
-public class CreateUserResponse
+public record CreateUserResponse
 {
     public int Id { get; set; }
     public required string Email { get; set; }

@@ -8,9 +8,9 @@ using Padel.Domain.Entities;
 
 namespace Padel.Application.Interfaces;
 
-public interface IProductoService
+public interface IProductService
 {
-    CreateProductoResponse CreateProducto (CreateProductoDto dto);
-    GetProductoResponse GetProductoById (int productoId);
-    Producto[] GetProductosActives();
+    ProductResponse CreateProduct (CreateProductDto dto);
+    ProductResponse GetProductById (int productId);
+    Product[] GetProductsActives();
 }
