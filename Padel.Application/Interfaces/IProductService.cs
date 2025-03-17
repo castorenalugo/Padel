@@ -11,6 +11,6 @@ namespace Padel.Application.Interfaces;
 public interface IProductService
 {
     ProductResponse CreateProduct (CreateProductDto dto);
-    ProductResponse GetProductById (int productId);
-    Product[] GetProductsActives();
+    ProductResponse Get (int id);
+    Product[] GetAll();
 }

@@ -21,17 +21,17 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("{productId}")]
-    public ActionResult GetProductoById(int productId)
+    [HttpGet()]
+    public ActionResult Get(int id)
     {
-        var result = _productService.GetProductById(productId);
+        var result = _productService.Get(id);
         return Ok(result);
     }
 
     [HttpGet ("Productos")]
-    public IActionResult GetProductosActives()
+    public IActionResult GetAll()
     {
-        var products = _productService.GetProductsActives();
+        var products = _productService.GetAll();
         return Ok(products);
     }
 }

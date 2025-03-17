@@ -28,36 +28,33 @@ public class ProductService: IProductService
         };
         
         var product = _productRepository.Create(newProduct);
-
-        var response = new ProductResponse(
+        
+        return new ProductResponse(
             product.Id,
             product.Name,
             product.Price,
             product.DateCreation
         );
-        return response;
     }
 
-    public ProductResponse GetProductById(int productId)
+    public ProductResponse Get(int id)
     {
-        var product = _productRepository.GetById(productId);
+        var product = _productRepository.GetById(id);
+        
         if (product == null)
-        {
             throw new Exception("PRODUCT DOES NOT EXIST");
-        }
-
-        var response = new ProductResponse(
+        
+        return new ProductResponse(
             product.Id,
             product.Name,
             product.Price,
             product.DateCreation
         );
-        return response;
     }
 
-    public Product[] GetProductsActives()
+    public Product[] GetAll()
     {
-        var products = _productRepository.GetAll().Where(u => u.IsActive).ToArray();
+        var products = _productRepository.GetAll().Where(u => u.IsActive == true).ToArray();
         return products;
     }
 }
