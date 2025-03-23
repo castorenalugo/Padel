@@ -18,7 +18,7 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public CreateUserResponse CreateUser(CreateUserDto dto)
+    public UserResponse CreateUser(CreateUserDto dto)
     {
         var existingUser = _userRepository.GetByEmail(dto.Email);
         
@@ -37,7 +37,7 @@ public class UserService : IUserService
         
         var user = _userRepository.Create(newUser);
 
-        var response = new CreateUserResponse()
+        var response = new UserResponse()
         {
             Id = user.Id,
             Email = user.Email,
@@ -48,7 +48,7 @@ public class UserService : IUserService
         return response;
     }
     
-    public GetUserResponse GetUserById(int userId)
+    public UserResponse GetUserById(int userId)
     {
         // Aqui se Consulta al repositorio por ID
         var user = _userRepository.GetById(userId);
@@ -58,7 +58,7 @@ public class UserService : IUserService
             return null;
         }
         
-        var response = new GetUserResponse()
+        var response = new UserResponse()
         {
             Id = user.Id,
             Email = user.Email,

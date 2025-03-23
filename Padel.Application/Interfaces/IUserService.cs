@@ -8,8 +8,8 @@ namespace Padel.Application.Interfaces;
 
 public interface IUserService
 {
-    CreateUserResponse CreateUser(CreateUserDto dto);
-    GetUserResponse GetUserById(int userId);
+    UserResponse CreateUser(CreateUserDto dto);
+    UserResponse GetUserById(int userId);
     bool DeleteUser(int userId);
     bool UpdateUser(int userId, UpdateUserDto dto);
 }

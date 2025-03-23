@@ -2,7 +2,7 @@
 
 namespace Padel.Application.DTOs;
 
-public class CreateUserDto
+public record CreateUserDto
 {
     [MaxLength(50)]
     public required string Email { get; set; }
